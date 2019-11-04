@@ -37,11 +37,11 @@ export const findNearestArray = (basePos, targetPos) => {
 /**
  * Return location data within the radius and maxitems, sorted by closest distance
  *
- * @param {Array of Objects} data - The results from getLocations
- * @param {google LatLng Object} origin - Coordinates to start from
- * @param {Integer|null} radius - Only return results within the distance. If null, search until you get the maxitems.
- * @param {Integer|null} limit - Number of results to return. If null, return all within Map bounds.
- * @return {Array of Objects} - Filtered sorted data
+ * @param { Array of Objects } data - The results from getLocations
+ * @param { google LatLng Object } origin - Coordinates to start from
+ * @param { Integer | null } radius - Only return results within the distance. If null, search until you get the maxitems.
+ * @param { Integer | null } limit - Number of results to return. If null, return all within Map bounds.
+ * @return { Array of Objects } - Filtered sorted data
  */
 export const getNearest = (data, origin, radius, limit) => {
   // default
@@ -97,14 +97,14 @@ export const geocodeLatLng = (latlng, geocoder, map) => {
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') {
       if (results[0]) {
-        /* eslint-disable */
         let marker = new window.google.maps.Marker({
           position: latlng,
           map: map
         })
-        /* eslint-enable */
+
         console.log(results[0].formatted_address)
         return results[0].formatted_address
+
       } else {
         console.log('No results found')
       }

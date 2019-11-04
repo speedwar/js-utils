@@ -36,10 +36,8 @@ export const compareSortValue = (a, b) => {
 export const getArrayUnique = (arr, comp) => {
   const unique = arr
     .map(e => e[comp])
-     // store the keys of the unique objects
-    .map((e, i, final) => final.indexOf(e) === i && i)
-    // eliminate the dead keys & store unique objects
-    .filter(e => arr[e]).map(e => arr[e])
+    .map((e, i, final) => final.indexOf(e) === i && i) // store the keys of the unique objects
+    .filter(e => arr[e]).map(e => arr[e]) // eliminate the dead keys & store unique objects
   return unique
 }
 
@@ -48,6 +46,10 @@ export const removeArrayDuplicates = (arr) => {
     !r.some(j => !Object.keys(i).some(k => i[k] !== j[k])) ? [...r, i] : r, [])
   return unique
 }
+
+export const getArrayIntersect = (arrA, arrB) => (
+  arrA.filter(x => arrB.includes(x))
+)
 
 export const getUrlParameter = (sParam) => {
   let sPageURL = history.location.search.substring(1),
@@ -64,18 +66,16 @@ export const getUrlParameter = (sParam) => {
 }
 
 /**
- * Currency - accounting
+ * Currency handling - accounting
  */
-
-export const currencyFormatAU = (value) => (
-  accounting.formatMoney(value, '$', 2, ".", ",")
-)
+export const currencyFormatAU = (value) => {
+  return accounting.formatMoney(value, '$', 2, ".", ",")
+}
 
 /**
- * UTC - Moment
+ * UTC time handling - Moment
  */
-
 export const timeFormatAU = (UTCFormat, locale) => {
   const formattedTime = moment(UTCFormat, 'DD/MM/YYYY HH:mm', locale, true)
-  return 
+  return formattedTime
 }
